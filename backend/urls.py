@@ -6,8 +6,10 @@ from rest_framework.routers import DefaultRouter
 # Views
 from workshops.views import AdminWorkshopViewSet, TrainerWorkshopViewSet
 from enrollments.views import ParticipantEnrollmentViewSet
-from users.views import RegisterView  # ✅ Add this
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView  # ✅ Add JWT views
+from users.views import RegisterView  
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView  
+from users.views import UserUpdateView, UserListView
+
 
 # Swagger / OpenAPI
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
@@ -25,6 +27,8 @@ urlpatterns = [
     # Auth
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/update/<int:id>/', UserUpdateView.as_view(), name='user-update'),  # admin only
+    path('api/users/', UserListView.as_view(), name='admin-user-list'), # admin only
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # API endpoints

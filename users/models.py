@@ -8,4 +8,4 @@ class User(AbstractUser):
         ('trainer', 'Trainer'),
         ('participant', 'Participant'),
     )
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='participant')
