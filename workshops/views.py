@@ -4,22 +4,23 @@ from .models import Workshop
 from .serializers import WorkshopSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
-
+from enrollments.models import Enrollment
 from users.permissions import IsAdmin
 from users.permissions import IsTrainer
 from rest_framework.decorators import action
+from rest_framework.views import APIView
+
 
 class WorkshopViewSet(viewsets.ModelViewSet):
     queryset = Workshop.objects.all()
     serializer_class = WorkshopSerializer
     permission_classes = [IsAuthenticated]
 
+
 class AdminWorkshopViewSet(viewsets.ModelViewSet):
     queryset = Workshop.objects.all()
     serializer_class = WorkshopSerializer
-    permission_classes = [IsAdmin]
-
+   
     @action(detail=True, methods=['get'])
     def participants(self, request, pk=None):
         workshop = self.get_object()

@@ -12,8 +12,8 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),       # training_db
         'USER': os.getenv('DB_USER'),       # root
         'PASSWORD': os.getenv('DB_PASSWORD'),  # 12345678
-        #'HOST': os.getenv('DB_HOST'),       # localhost
-        'HOST': 'db',  # service name in docker-compose
+        'HOST': os.getenv('DB_HOST'),       # localhost
+        #'HOST': 'db',  # service name in docker-compose
         'PORT': os.getenv('DB_PORT', '3306'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-svx@id2wxp_m8oog!4=5reub%#o0)m7_4ir2ekr+0x*f&p4rrf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'users',
     'workshops',
     'enrollments',
