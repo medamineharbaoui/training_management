@@ -12,7 +12,8 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),       # training_db
         'USER': os.getenv('DB_USER'),       # root
         'PASSWORD': os.getenv('DB_PASSWORD'),  # 12345678
-        'HOST': os.getenv('DB_HOST'),       # localhost
+        #'HOST': os.getenv('DB_HOST'),       # localhost
+        'HOST': 'db',  # service name in docker-compose
         'PORT': os.getenv('DB_PORT', '3306'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'workshops',
     'enrollments',
     'drf_spectacular',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 
