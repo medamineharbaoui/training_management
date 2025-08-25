@@ -21,7 +21,6 @@ git clone https://github.com/medamineharbaoui/training_management.git
 cd your-repo-name
 ```
 
-Replace `your-username` and `your-repo-name` with your actual GitHub username and repository name.
 
 ### 2. Set Up a Virtual Environment
 
